@@ -11,7 +11,11 @@ namespace Making_Classes
         static void Main(string[] args)
         {
             Student person = new Student("Steve", "Aldworth");
-            Console.WriteLine(person);
+            Console.WriteLine(person.Email);
+            person.LastName = "Segal";
+            Console.ReadLine();
+            person.ResetStudentNumber();
+            Console.WriteLine(person.Email);
             Console.ReadLine();
         }
     }
