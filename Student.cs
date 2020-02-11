@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Making_Classes
 {
-    class Student
+    class Student : IComparable<Student>
     {
         private string firstName;
         private string lastName;
@@ -73,6 +73,7 @@ namespace Making_Classes
             return firstName + " " + lastName;
         }
 
+
         public void ResetStudentNumber()
         {
             Random generator = new Random();
@@ -80,9 +81,28 @@ namespace Making_Classes
             GenerateEmail();
         }
 
+
         private void GenerateEmail()
         {
             email = firstName.Substring(0, 3) + lastName.Substring(0, 3) + (studentNumber + "").Substring(3) + "@ICS4U.com";
         }
+
+
+
+        //Comparison Section
+
+        public int CompareTo(Student that)
+        {
+            return this.LastName.CompareTo(that.LastName);
+        }
+
+        public override bool Equals(object obj)
+        {
+            Student student = obj as Student;   //
+            if (student == null)
+                return false;
+            return this.FirstName == student.FirstName && this.LastName == student.LastName && this.StudentNumber == student.StudentNumber;
+        }
+
     }
 }
