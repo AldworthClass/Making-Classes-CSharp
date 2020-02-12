@@ -93,7 +93,10 @@ namespace Making_Classes
 
         public int CompareTo(Student that)
         {
-            return this.LastName.CompareTo(that.LastName);  //Will sort by last name
+            if (this.LastName.CompareTo(that.LastName) == 0) //If last names are equal, compares first names
+                return this.FirstName.CompareTo(that.FirstName);  
+
+            return this.LastName.CompareTo(that.LastName);  //Otherwise compares last names
         }
 
 
@@ -103,7 +106,7 @@ namespace Making_Classes
             Student student = obj as Student;   //cast object to Student for comparison
             if (student == null)
                 return false;
-            return this.FirstName == student.FirstName && this.LastName == student.LastName;// && this.StudentNumber == student.StudentNumber;
+            return this.FirstName == student.FirstName && this.LastName == student.LastName && this.StudentNumber == student.StudentNumber;
         }
         //Overrides hash code
         public override int GetHashCode()
