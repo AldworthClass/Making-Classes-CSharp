@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Making_Classes
 {
     class Student : IComparable<Student>
-    {
+    {       
+        private static Random generator = new Random();
         private string firstName;
         private string lastName;
         private string email;
@@ -15,9 +16,9 @@ namespace Making_Classes
         
         public Student(string firstName, string lastName)
         {
-            Random generator = new Random();
-            this.firstName = firstName;
-            this.lastName = lastName;
+            //Random generator = new Random();
+            this.firstName = firstName.Trim();
+            this.lastName = lastName.Trim();
             studentNumber = generator.Next(0, 1000) + 555000;
             GenerateEmail();
         }
@@ -76,7 +77,6 @@ namespace Making_Classes
 
         public void ResetStudentNumber()
         {
-            Random generator = new Random();
             this.studentNumber = generator.Next(0, 1000) + 555000;
             GenerateEmail();
         }
@@ -84,7 +84,20 @@ namespace Making_Classes
 
         private void GenerateEmail()
         {
-            email = firstName.Substring(0, 3) + lastName.Substring(0, 3) + (studentNumber + "").Substring(3) + "@ICS4U.com";
+            string first, last;
+
+            if (firstName.Length <= 3)
+                first = firstName;
+            else
+                first = firstName.Substring(0, 3);
+
+            if (lastName.Length <= 3)
+                last = lastName;
+            else
+                last = lastName.Substring(0, 3);
+
+            email = first + last + (studentNumber + "").Substring(3) + "@ICS4U.com";
+            
         }
 
 
