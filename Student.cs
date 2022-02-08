@@ -6,20 +6,21 @@ using System.Threading.Tasks;
 
 namespace Making_Classes
 {
-    class Student : IComparable<Student>
+    class Student
     {       
         private static Random generator = new Random();
-        private string firstName;
-        private string lastName;
-        private string email;
-        private int studentNumber;
+        private string _firstName;
+        private string _lastName;
+
+        private string _email;
+        private int _studentNumber;
         
         public Student(string firstName, string lastName)
         {
             //Random generator = new Random();
-            this.firstName = firstName.Trim();
-            this.lastName = lastName.Trim();
-            studentNumber = generator.Next(0, 1000) + 555000;
+            _firstName = firstName.Trim();
+            _lastName = lastName.Trim();
+            _studentNumber = generator.Next(0, 1000) + 555000;
             GenerateEmail();
         }
 
@@ -27,7 +28,7 @@ namespace Making_Classes
         {
             get
             {
-                return email;
+                return _email;
             }
         }
 
@@ -36,11 +37,11 @@ namespace Making_Classes
         {
             get
             {
-                return firstName;
+                return _firstName;
             }
             set
             {
-                firstName = value;
+                _firstName = value;
                 GenerateEmail();
             }
         }
@@ -50,11 +51,11 @@ namespace Making_Classes
         {
             get
             {
-                return lastName;
+                return _lastName;
             }
             set
             {
-               lastName = value;
+               _lastName = value;
                GenerateEmail();
             }
         }
@@ -64,20 +65,20 @@ namespace Making_Classes
         {
             get
             {
-                return studentNumber;
+                return _studentNumber;
             }
         }
        
         //Overrides ToString() 
          public override string ToString()
         {
-            return firstName + " " + lastName;
+            return _firstName + " " + _lastName;
         }
 
 
         public void ResetStudentNumber()
         {
-            this.studentNumber = generator.Next(0, 1000) + 555000;
+            _studentNumber = generator.Next(0, 1000) + 555000;
             GenerateEmail();
         }
 
@@ -86,17 +87,17 @@ namespace Making_Classes
         {
             string first, last;
 
-            if (firstName.Length <= 3)
-                first = firstName;
+            if (_firstName.Length <= 3)
+                first = _firstName;
             else
-                first = firstName.Substring(0, 3);
+                first = _firstName.Substring(0, 3);
 
-            if (lastName.Length <= 3)
-                last = lastName;
+            if (_lastName.Length <= 3)
+                last = _lastName;
             else
-                last = lastName.Substring(0, 3);
+                last = _lastName.Substring(0, 3);
 
-            email = first + last + (studentNumber + "").Substring(3) + "@ICS4U.com";
+            _email = first + last + (_studentNumber + "").Substring(3) + "@ICS4U.com";
             
         }
 
@@ -124,7 +125,7 @@ namespace Making_Classes
         //Overrides hash code
         public override int GetHashCode()
         {
-            return (firstName+lastName+studentNumber).GetHashCode();
+            return (_firstName+_lastName+_studentNumber).GetHashCode();
         }
 
     }
