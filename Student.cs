@@ -8,10 +8,10 @@ namespace Making_Classes
 {
     class Student
     {       
-        private static Random generator = new Random();
+        private static Random generator = new Random(); // Used my all instances of students
+        
         private string _firstName;
         private string _lastName;
-
         private string _email;
         private int _studentNumber;
         
@@ -32,9 +32,9 @@ namespace Making_Classes
             }
         }
 
-        //Property to provide access to firstName
-        public string FirstName
-        {
+       //Property to provide access to firstName
+       public string FirstName
+       {
             get
             {
                 return _firstName;
@@ -44,7 +44,7 @@ namespace Making_Classes
                 _firstName = value;
                 GenerateEmail();
             }
-        }
+       }
 
         //Property to provide access to lastName
         public string LastName
@@ -75,13 +75,11 @@ namespace Making_Classes
             return _firstName + " " + _lastName;
         }
 
-
         public void ResetStudentNumber()
         {
             _studentNumber = generator.Next(0, 1000) + 555000;
             GenerateEmail();
         }
-
 
         private void GenerateEmail()
         {
@@ -97,14 +95,10 @@ namespace Making_Classes
             else
                 last = _lastName.Substring(0, 3);
 
-            _email = first + last + (_studentNumber + "").Substring(3) + "@ICS4U.com";
-            
+            _email = first + last + (_studentNumber + "").Substring(3) + "@ICS4U.com";           
         }
 
-
-
-        //Comparison Section
-
+        //Comparing Students Optional Section
         public int CompareTo(Student that)
         {
             if (this.LastName.CompareTo(that.LastName) == 0) //If last names are equal, compares first names
@@ -127,6 +121,5 @@ namespace Making_Classes
         {
             return (_firstName+_lastName+_studentNumber).GetHashCode();
         }
-
     }
 }
